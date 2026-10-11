@@ -1,0 +1,16 @@
+{
+  "tick_size": "0.00005",
+  "multiplier": 125000,
+  "fee_per_side_usd": 2.5,
+  "slippage_ticks": 1,
+  "latency_ms": 100,
+  "max_fill_wait_ms": 1000,
+  "decision_seconds": 1,
+  "forecast_seconds": 30,
+  "max_hold_seconds": 120,
+  "extra_edge_ticks": 1,
+  "max_spread_ticks": 2,
+  "session_loss_limit_usd": 250,
+  "train_fraction": 0.6,
+  "stale_seconds": 2
+}
