@@ -4,7 +4,7 @@ Updated: 12 October 2026. No empirical trading result exists.
 | Candidate / hypothesis | Data readiness | Completed experiment / evidence | Risks | Next action |
 |---|---|---|---|---|
 | Data acquisition and provenance | Proposed GLBX.MDP3 MBP-1/definitions sample; no authenticated estimate | Adapter software checks pass with mocks | Unverified symbol/liquidity, licensing, estimate, flags and status handling | Verify source and cost metadata before authorized acquisition |
-| XM broker-FX data route | User proposed VM; platform/account and actual ticks unverified | Primary-documentation qualification completed; see XM_FEED_QUALIFICATION.md | OnTick event loss, ambiguous overlap, recovered timestamps lack arrival latency; FX feed is not CME evidence | Qualify one completed and one prospective session when sample access exists |
+| XM broker-FX data route | Windows/MT5 confirmed by user; account and actual ticks unverified | Qualification specification and read-only collector implemented; 8 archive mock checks pass | OnTick event loss, ambiguous overlap, recovered timestamps lack arrival latency; FX feed is not CME evidence | Run Windows one-batch check, then qualify prospective capture and repeated intervals |
 | OU mean reversion benchmark | No genuine quotes | Offline replay and accounting checks; no profitability evidence | Nonstationarity, spread/latency assumptions, one-session split | Inspect genuine sample, then establish baseline |
 | Local-level/trend state-space | No genuine quotes | Hypothesis specified; not implemented/evaluated | Filter calibration, leakage, noise versus tradable drift | Specify causal forecasts and rolling protocol |
 | Time-varying volatility / regimes | No genuine quotes | Research candidate only | Better forecast calibration may not improve trading P&L | Define falsifiable comparison against simpler models |
@@ -18,3 +18,5 @@ Updated: 12 October 2026. No empirical trading result exists.
 - 11 October 2026: repository initialized with standing instructions, current state, research specifications and existing offline code. No live services started.
 
 - 12 October 2026: completed XM/MetaTrader feed qualification from primary documentation. Conditional preference for MT5 batch recovery; MT4 OnTick capture has an explicit completeness limitation. Defined raw schema, overlap/clock provenance and sample acceptance checks. No collector deployed, no market sample retrieved and no software code changed. Next research action: specify causal 60-second state-space comparison and execution rules.
+
+- 12 October 2026 (implementation): user confirmed Windows and MT5. Added collect_mt5.py and MT5_SETUP.md, preserving raw overlapping batches, tied/identical rows, query availability, hashes and atomic checkpoints. 25 local checks pass; Linux mocks do not verify the Windows/MT5 integration. No collector deployed, data acquired or trades sent. Account class, storage rights, uptime and symbol remain pending.
