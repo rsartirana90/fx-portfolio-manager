@@ -7,7 +7,7 @@ Updated: 12 October 2026.
 - GitHub repository: https://github.com/rsartirana90/fx-portfolio-manager (public).
 - Existing weekday supervision around 08:00 Europe/London, with broader Friday review; no schedule change in this repository setup.
 - Offline OU benchmark, quote storage/replay and estimate-first adapter exist. 17 local checks passed on 11 October 2026. These include synthetic/model-mocked checks only.
-- No broker API, paid feed, genuine market dataset, continuous engine or actual paper ledger is connected.
+- Earlier repository-only status: no broker/data connection was verified here. Updated user-reported VM deployment is recorded below; no genuine market batch has been received for analysis.
 - Proposed sample: CME GLBX.MDP3, explicit Euro FX December 2026 6EZ6; 15 London daytime sessions, 21 September–9 October 2026; MBP-1 plus definitions. Symbol, liquidity and contract properties require verification.
 - GBP 100 was a planning allowance, not an approved purchase or provider quote. Exact authenticated estimate and licensing are unresolved.
 - Code risk settings are software placeholders, not agreed limits.
@@ -20,3 +20,12 @@ Updated: 12 October 2026.
 Next: lock a causal 60-second local-level/trend benchmark and execution protocol using public research. When a genuine XM sample becomes available, qualify timestamps, bid/ask, overlap recovery and availability before empirical tests. CME symbol/definitions and authorized cost metadata remain unresolved.
 
 - 12 October: read-only MT5 batch collector and Windows setup guide added to fx_research. 25 local software checks pass (17 existing + 8 archive mocks). No Windows integration test, deployment or real sample yet. The collector preserves overlapping raw batches; reconciliation/qualification is required before replay. Next operational action: user runs exact-symbol discovery and one-batch check on the VM; no remote credentials are needed.
+
+## Latest session decisions and implementation — 12 October evening
+
+- User reports virtual-money strategies already run on the always-on Windows VM. Claude executes repository Python models; a separate existing procedure handles orders. That procedure is not available in this checkout. Do not ask for the repository location again.
+- Scope is an independent FX Python model library; the other technical-analysis strategies are inaccessible and are not dependencies. Stochastic volatility is intended primarily for new signals, secondarily filtering. Options remain a later research sleeve. No profitability evidence has been shared.
+- User selects all available trading sessions and weekly collection/sharing of M5 candles plus activity logs. Precise signal/fill times and optional bid/ask ticks remain necessary to examine fast execution; M5 candles do not recover intrabar paths.
+- Added telemetry.py: explicit signal contract, immutable run config, private SQLite journal and consistent full-run CSV/manifest export. VM_INTEGRATION.md describes how Claude wires the existing runner; the change does not activate logging or alter signals/orders on the VM.
+- 31 local software checks pass. No Windows runner integration, genuine weekly batch or empirical strategy evaluation has been performed here. The offline engine/config retains CME assumptions; do not substitute those for XM metadata.
+- Next: integrate journal on the VM, verify a demo cycle/restart and deliver the first weekly batch. Preserve model/code/config versions; evaluate refinements on later unseen batches.
