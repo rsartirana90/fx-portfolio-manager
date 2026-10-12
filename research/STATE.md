@@ -1,5 +1,5 @@
 # Verified project state
-Updated: 11 October 2026.
+Updated: 12 October 2026.
 
 - Scope: seconds-to-minutes FX futures; research and paper trading first.
 - Options role, capital and financial risk limits are undecided.
@@ -13,4 +13,8 @@ Updated: 11 October 2026.
 - Code risk settings are software placeholders, not agreed limits.
 - GitHub setup versions code/instructions; it does not automatically synchronize chat content or run the scheduled ChatGPT workflow.
 
-Next: resolve symbol/definitions and obtain authorized cost metadata when provider access exists. Meanwhile advance primary-source model and data research.
+- Latest user proposal: an existing VM with XM installed may supply broker FX quotes. VM OS, MT4/MT5, account type, uptime, symbol metadata, storage permissions and tick availability remain unverified. No VM access exists here.
+- 12 October: public-source feed qualification completed in research/XM_FEED_QUALIFICATION.md. MT5 stored-tick retrieval is preferred conditionally; OnTick logging alone does not certify complete capture. Recovered/extraction timestamps do not measure live latency.
+- Broker FX research remains distinct from executable CME futures evidence.
+
+Next: lock a causal 60-second local-level/trend benchmark and execution protocol using public research. When a genuine XM sample becomes available, qualify timestamps, bid/ask, overlap recovery and availability before empirical tests. CME symbol/definitions and authorized cost metadata remain unresolved.
