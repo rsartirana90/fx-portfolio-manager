@@ -1,8 +1,8 @@
 # XM / MetaTrader feed qualification
-Date: 12 October 2026. Status: public-documentation research completed; no VM connection, market sample, backtest or collector deployment.
+Date: 12 October 2026. Status: public-documentation research completed; Windows/MT5 confirmed by user; collector implemented but no VM connection, market sample, backtest or deployment.
 
 ## Decision
-Treat XM as a conditional broker-FX research route alongside the unresolved CME futures route. Prefer MT5 tick-history retrieval if the existing VM supports it. Do not assume the VM is Windows, continuously running, MT5, demo or live: these remain unknown. Neither data access nor storage rights have been verified for the user's account.
+Treat XM as a conditional broker-FX research route alongside the unresolved CME futures route. Prefer MT5 tick-history retrieval if the existing VM supports it. User confirmed Windows and MT5. Continuous uptime and demo/live class remain unknown. Neither data access nor storage rights have been verified for the user's account.
 
 ## Verified findings
 1. MetaQuotes' Python copy_ticks_range retrieves terminal ticks over a date range, including bid/ask and flags. Its example includes time_msc. Use timezone-aware UTC requests; the API documents UTC tick timestamps. https://www.mql5.com/en/docs/python_metatrader5/mt5copyticksrange_py
@@ -11,7 +11,7 @@ Treat XM as a conditional broker-FX research route alongside the unresolved CME 
 4. MqlTick includes bid, ask, last, volume, time_msc and change flags. Those field names do not establish that this account supplies genuine exchange trades or consolidated order flow. https://www.mql5.com/en/docs/constants/structures/mqltick
 5. XM offers Forex and MT4/MT5 platforms, but platform availability does not verify this user's account, symbol definition or historical tick coverage. https://www.xm.com/
 
-## Proposed acquisition contract (not deployed)
+## Acquisition contract (raw batch capture implemented; qualification/reconciliation pending)
 - Discover the actual EUR/USD symbol and preserve broker/server label, demo/live classification, terminal/package versions, price units, lot/contract and trading-session metadata. Never save credentials or private account identifiers in this public repository.
 - Store immutable returned batches with query bounds, error/status, extraction UTC timestamp, batch sequence, row ordinal and file hash. Preserve all tick fields.
 - Use explicit bounded requests and overlapping recovery windows. Persist a checkpoint only after durable storage. Requery a closed interval to check stability and incomplete synchronization.
@@ -32,3 +32,6 @@ CME profitability still requires contract-specific futures data and costs. No op
 ## Current measurements and next action
 Net P&L, drawdown, turnover and uncertainty: not measured.
 Next public-source action: lock a causal 60-second local-level/trend benchmark and execution specification, with rolling chronological calibration and cost break-even reporting. VM/account details and a genuine sample are the empirical gap; no repeated connection request is needed to continue research.
+
+## Collector implementation
+See ../fx_research/collect_mt5.py and ../fx_research/MT5_SETUP.md. Raw overlapping responses are retained without deduplication. A query checkpoint is not a completeness certificate. Closed-window stability and ordered overlap reconciliation remain pending; this archive is not yet an engine input. Eight new mock checks pass alongside the existing 17 checks. The VM must run a genuine one-batch check before connectivity is claimed.
