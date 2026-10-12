@@ -13,8 +13,10 @@ Updated: 12 October 2026.
 - Code risk settings are software placeholders, not agreed limits.
 - GitHub setup versions code/instructions; it does not automatically synchronize chat content or run the scheduled ChatGPT workflow.
 
-- Latest user proposal: an existing VM with XM installed may supply broker FX quotes. VM OS, MT4/MT5, account type, uptime, symbol metadata, storage permissions and tick availability remain unverified. No VM access exists here.
+- Latest user proposal: an existing VM with XM installed may supply broker FX quotes. User confirmed Windows and MetaTrader 5 on 12 October. Account type, uptime, symbol metadata, storage permissions and tick availability remain unverified. No VM access exists here.
 - 12 October: public-source feed qualification completed in research/XM_FEED_QUALIFICATION.md. MT5 stored-tick retrieval is preferred conditionally; OnTick logging alone does not certify complete capture. Recovered/extraction timestamps do not measure live latency.
 - Broker FX research remains distinct from executable CME futures evidence.
 
 Next: lock a causal 60-second local-level/trend benchmark and execution protocol using public research. When a genuine XM sample becomes available, qualify timestamps, bid/ask, overlap recovery and availability before empirical tests. CME symbol/definitions and authorized cost metadata remain unresolved.
+
+- 12 October: read-only MT5 batch collector and Windows setup guide added to fx_research. 25 local software checks pass (17 existing + 8 archive mocks). No Windows integration test, deployment or real sample yet. The collector preserves overlapping raw batches; reconciliation/qualification is required before replay. Next operational action: user runs exact-symbol discovery and one-batch check on the VM; no remote credentials are needed.
