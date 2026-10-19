@@ -1,5 +1,10 @@
 # FX portfolio manager — research starter v0.2
 
+> **Model-library v2 (19 October 2026):** for the OU/Kalman/return-AR ensemble,
+> use [MODEL_LIBRARY.md](MODEL_LIBRARY.md), `signals.py`, and
+> `ensemble_config.json`. This older guide describes the separate offline
+> tick-replay starter, not the v2 VM signal API.
+
 Prepared 11 October 2026.
 
 ## Agreed mandate

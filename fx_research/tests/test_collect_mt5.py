@@ -35,9 +35,9 @@ class ArchiveTests(unittest.TestCase):
         self.path = Path(self.tmp.name) / 'ticks.sqlite3'
         self.archive = Archive(self.path, 'EURUSD', 1000, 'test-feed')
         self.archive.start_run({'test': 'synthetic'})
-    def tearDown(self):
-        self.archive.db.close()
-        self.tmp.cleanup()
+        # patch locale Bottana: pulizie in ordine inverso (prima i database, poi la cartella)
+        self.addCleanup(self.tmp.cleanup)
+        self.addCleanup(self.archive.db.close)
     def test_preserves_same_millisecond_and_identical_rows(self):
         rows = [tick(), tick(), tick(bid=1.2)]
         collect_once(FakeMT5(rows), self.archive, 'EURUSD', 2000)

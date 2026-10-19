@@ -1,5 +1,37 @@
 # Verified project state
-Updated: 12 October 2026.
+Updated: 19 October 2026.
+
+## Current model-library release — 19 October 2026
+
+- User clarified that GitHub is the authoritative signal/model library. VM data
+  collection and order handling are separate. Do not expand this repo into an
+  execution service or assume a GitHub change activates the VM.
+- Compared the user-supplied VM repository archive with the inspected GitHub
+  head. It contained the offline OU engine plus collector/journal, with local
+  database-lifecycle fixes; those fixes are included in this release.
+- Added new, explicitly versioned `fx-models-2.0.0`: completed-bar OU, adaptive
+  damped Kalman trend and regularised return AR(1), combined by a signed score,
+  predictive mixture uncertainty, agreement, freshness and cost hurdles.
+- Main API: fx_research.signals.generate_signal. Initial M5 / one-bar forecast
+  profile; 64 consecutive completed bars minimum and 256-bar rolling window.
+  Finer genuine bars are configurable. Parameters/weights are fixed research
+  choices, not optimised or proven profitable. The new bar models are not a
+  reconstruction of an external legacy daily implementation.
+- Added exact-symbol/UTC/availability validation, XLSX candle reader, synthetic
+  API demonstration, telemetry adapter and rolling forecast evaluator with
+  matched random-walk targets. No orders, position sizes or synthetic fills.
+- 55 local software checks pass. The supplied short workbook is accepted by
+  the reader but yields INSUFFICIENT_QUALIFIED_HISTORY, not performance metrics.
+- Reviewed privately supplied activity/data formats; keep raw records, account
+  details and numerical private ledger results out of this public repository.
+  No genuine-data profitability evidence exists for v2. Windows/runner migration
+  and prospective validation remain pending.
+- Next: pull the release on the VM, wire the documented API in diagnostic mode,
+  collect full sessions and all component outputs, then evaluate fixed models
+  on chronological validation and untouched later sessions. Keep the existing
+  ChatGPT schedule; no change was made to it.
+
+## Earlier state and decisions (historical)
 
 - Scope: seconds-to-minutes FX futures; research and paper trading first.
 - Options role, capital and financial risk limits are undecided.

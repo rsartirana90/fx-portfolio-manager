@@ -1,5 +1,6 @@
 """Offline FX futures research. Standard library only; no broker/order API."""
 import argparse, csv, hashlib, json, math, random, sqlite3
+from contextlib import closing  # patch locale Bottana
 from decimal import Decimal
 from pathlib import Path
 
@@ -70,7 +71,7 @@ def ingest(path, db, contract, source, c):
         conn.close()
 
 def load(db, c):
-    with sqlite3.connect(db) as conn:
+    with closing(sqlite3.connect(db)) as conn, conn:  # patch locale Bottana: chiude il database
         meta = dict(conn.execute('SELECT key,value FROM metadata'))
         if meta.get('schema_version') != '2':
             raise ValueError('Re-import the source CSV into a fresh database for schema version 2')

@@ -15,7 +15,8 @@ class Checks(unittest.TestCase):
             file.write_text('ts_event_ns,bid,ask,bid_size,ask_size\n1,1.1,1.10005,1,1\n2,1.1001,1.1,1,1\n')
             with self.assertRaises(ValueError): engine.ingest(file,db,'EXPLICIT','test',engine.config())
             import sqlite3
-            with sqlite3.connect(db) as conn:
+            from contextlib import closing  # patch locale Bottana
+            with closing(sqlite3.connect(db)) as conn:
                 self.assertEqual(conn.execute('SELECT count(*) FROM quotes').fetchone()[0],0)
 
     def test_no_future_interpolation(self):

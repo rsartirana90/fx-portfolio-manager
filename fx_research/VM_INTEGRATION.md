@@ -1,5 +1,18 @@
 # Python model and weekly evidence integration
 
+## V2 signal entry point — 19 October 2026
+
+The repo now includes the new model API: `signals.generate_signal`. Read
+[MODEL_LIBRARY.md](MODEL_LIBRARY.md) for migration and `telemetry_signal`.
+The new model_id is `fx-models-2.0.0`; log the full component diagnostics and
+final intent. Under v2, normal rolling calibration/filter updates are recorded
+per signal in operational diagnostics. Start new immutable runs for code,
+config or instrument changes. This supersedes the older requirement below to
+change run ID for every fitted-state update.
+No-trade is entry abstention, not an automatic exit. The separate runner must
+explicitly choose when to consume these signals. GitHub publication is not a
+claim that the VM switch or Windows integration has happened.
+
 Claude executes the Python model code on the Windows VM; an existing, separate
 procedure handles demo orders. This module adds a contract and journal for that
 runner. It does not replace the runner, generate a new profitable model, connect

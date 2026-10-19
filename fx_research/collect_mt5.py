@@ -33,6 +33,13 @@ class Archive:
     def __init__(self, path, symbol, origin_ms, feed_identity):
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(path)
+        try:  # patch locale Bottana: chiude il database se l'apertura fallisce
+            self._init(symbol, origin_ms, feed_identity)
+        except BaseException:
+            self.db.close()
+            raise
+
+    def _init(self, symbol, origin_ms, feed_identity):
         self.db.execute('PRAGMA journal_mode=WAL')
         self.db.execute('PRAGMA synchronous=FULL')
         self.db.executescript('''

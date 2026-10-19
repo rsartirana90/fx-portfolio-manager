@@ -1,0 +1,2 @@
+# Optional XLSX reader only; core models/signals use the Python standard library.
+openpyxl==3.1.5

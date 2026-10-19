@@ -1,10 +1,34 @@
 # FX Portfolio Manager
 
-An ongoing FX futures research and paper-trading programme, supervised in the [ChatGPT project](https://chatgpt.com/g/g-p-6acc10bfbf3081919721b3cd85821cc2/project).
+A Python model and signal-generation library for an ongoing FX research and
+paper-trading programme, supervised in the [ChatGPT project](https://chatgpt.com/g/g-p-6acc10bfbf3081919721b3cd85821cc2/project).
+
+## Model library v2 — 19 October 2026
+
+**OU + volatility-adaptive Kalman trend + regularised return AR(1)** produce a
+common forecast, uncertainty, directional-agreement score and cost-aware
+buy/sell/no-trade intent. Main entry point: `fx_research.signals.generate_signal`.
+The VM supplies prices and handles execution separately. No orders are sent.
+
+Read [MODEL_LIBRARY.md](fx_research/MODEL_LIBRARY.md) for equations, scoring,
+input/output contracts, examples and VM migration. Initial profile: M5 bars,
+one-bar horizon, 64-bar minimum warm-up, fixed unoptimised parameters. These
+models are **unvalidated research candidates**. Publication does not switch the
+VM runner or demonstrate profitability.
+
+```bash
+python -m fx_research.example_models  # synthetic demonstration only
+```
+
+`evaluate_models.py` provides chronological rolling forecast comparisons against
+random walk, with recorded availability and paired targets. It does not infer
+fills from candles. The old `engine.py` remains a separate tick-replay OU
+benchmark with futures-specific assumptions. Use `ensemble_config.json` for
+the new API; do not use the old futures `config.json` for XM signals.
 
 Typical futures holding time: seconds to a few minutes. Options are a potential slower risk sleeve; their purpose remains undecided.
 
-## Current status — 12 October 2026
+## Earlier foundation — 12 October 2026 (historical)
 
 - Offline research code, estimate-first historical-data adapter and read-only MT5 raw-batch collector exist.
 - 31 software checks pass, including six signal/journal/export checks. Provider tests use mocks; synthetic demonstrations establish software behavior only.

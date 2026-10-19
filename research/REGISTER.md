@@ -1,5 +1,21 @@
 # Research register
-Updated: 12 October 2026. No empirical trading result exists.
+Updated: 19 October 2026. No profitability evidence exists for the new v2 models.
+
+## V2 candidates and validation status
+
+| Candidate | Implementation / evidence | Remaining risk | Next action |
+|---|---|---|---|
+| Completed-bar OU | Implemented OLS log-level AR(1), stationarity/variance rejection | Equilibrium instability and parameter uncertainty | Prospective rolling/session evaluation |
+| Adaptive damped Kalman trend | Implemented filtered level/slope and causal EWMA-scaled noise | Fixed noise ratios, weak drift, correlated model errors | Compare with random walk, OU and fixed-noise settings on reserved periods |
+| Regularised return AR(1) | Implemented positive/negative lag dynamics and cumulative-horizon variance | Signal decay, shrinkage choices, redundancy with other models | Incremental forecast comparison and ablation |
+| Ensemble | Implemented fixed weights, mixture uncertainty, agreement and basis-aware cost gate | Uncalibrated score/thresholds; conditional uncertainty omits parameter risk | Freeze defaults, log every component, test on later unseen sessions |
+
+Software validation: 55 passing local checks. Workbook reader accepts the supplied
+format; present sample is too short and returns insufficient-history status.
+No live service, trades, genuine fills, model P&L or VM migration is claimed.
+The evaluation CLI is forecast-only; exchange quote replay remains separate.
+
+## Earlier register (historical)
 
 | Candidate / hypothesis | Data readiness | Completed experiment / evidence | Risks | Next action |
 |---|---|---|---|---|
