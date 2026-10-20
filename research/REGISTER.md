@@ -1,5 +1,22 @@
 # Research register
-Updated: 19 October 2026. No profitability evidence exists for the new v2 models.
+Updated: 20 October 2026. No profitability evidence exists for the new v2 models.
+
+## Calibration audit — 20 October 2026
+
+Completed 6,000 independent synthetic no-drift windows using frozen v2 defaults.
+Kalman nominal 95% normal intervals covered 85.43% (64 bars) and 84.53%
+(256 bars). OU's admissibility heuristic accepted 94.53% and 86.77% of
+random-walk windows; this does not establish stationarity. Ensemble coverage
+was 94.20% / 94.53%, unconditioned on trading gates. All 55 software checks pass.
+Keep all candidates unvalidated, parameters unchanged; no genuine v2 P&L,
+drawdown or turnover measured. Reproduction and limitations:
+[null calibration audit](NULL_CALIBRATION_2026-10-20.md).
+
+Next research action: conditional coverage and false trade eligibility under
+frozen gates/cost scenarios, then shock/drift controls. Genuine testing remains
+limited by insufficient consecutive completed bars and executable quote/cost
+metadata; M5 broker-FX results cannot establish seconds-level futures edge.
+
 
 ## V2 candidates and validation status
 
